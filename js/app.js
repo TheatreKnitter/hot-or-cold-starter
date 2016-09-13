@@ -35,13 +35,23 @@ $(document).ready(function(){
       event.preventDefault();
       var guess = $("#userGuess").val()
       userGuess(guess);
+      var counter = parseInt($("#count").text()); 
+      counter++; 
+      $("#count").text(counter);
 
   });
+
+
+  function list(){
+        $("ul#guessList").append("<li>" + $("#userGuess").val() + "</li>");
+        $('#userGuess').val(" ");
+  };
+
 
   // contract
   function userGuess(guess){
     guess = parseInt(guess);
-    list()
+    list();
       /*console.log(
         guess <= randomNumber -5,
         guess >= randomNumber +5,
@@ -50,6 +60,8 @@ $(document).ready(function(){
        );*/
     if (guess %1 != 0) { 
       alert ("Please submit a whole number")
+        } else if (guess === randomNumber){          
+            $("#feedback").html("You guessed the number!")
         } else if (guess <= randomNumber -50 || guess >= randomNumber + 50) {
             $("#feedback").html("Icy Cold")
         } else if (guess <= randomNumber -30 || guess >= randomNumber +30){
@@ -60,34 +72,21 @@ $(document).ready(function(){
             $("#feedback").html("hot")
         } else if (guess >= randomNumber -5 && guess <= randomNumber +5){
             $("#feedback").html("Scorching hot")
-        } else if (guess === randomNumber){          
-            $("#feedback").html("You guessed the number!")
         }
         /*else {
           $("#feedback").html("Otherwise");
         }*/
   }
 
-  function list(){
-    $('#guessButton').on('click', function(){
-        $("ul#guessList").append($("<li>").text($("#userGuess").val()));
-        $('#userGuess').empty();
-    });
-  };
 
-  /*$("#guessButton").click(function(guess) { 
-      var counter = $("#count").val(); 
-      counter ++; 
-      $("#count").html(counter);
-  });*/
 
-  $("#count").html(parseInt($("#count").html())+1);
+  
     
 });
 
 
 
-      
+      //$("#count").html(parseInt($("#count").html())+1);
 //document.getElementById("myspan").innerHTML="newtext";
 
 
